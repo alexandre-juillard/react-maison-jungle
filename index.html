@@ -17,10 +17,48 @@
     ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-      function Header() {
-        return <h1>La maison Jungle</h1>;
+      //on declare composants sous forme de fonction
+      function Banner() {
+        const title = "la maison jungle";
+        return <h1>{title.toUpperCase()}</h1>;
       }
-      ReactDOM.render(<Header />, document.getElementById("root"));
+
+      //peut aussi s'ecrire sous forme de fct flechée
+      // const Header = () => {
+      //   return (<h1>La maison Jungle</h1>);
+      // }
+
+      //exemple expression JS dans une div dans un composant
+      // const ExpressionJS = () => {
+      //   return (<h1>{La maison jungle.toUpperCase() }</h1>);
+      // }
+
+      function Description() {
+        const text = "Achetez les plantes dont avez toujours rêvé";
+        const emojis = "🌴";
+        return <p>{text + emojis}</p>;
+      }
+
+      const Cart = () => {
+        const monsteraPrice = 8;
+        const lierrePrice = 10;
+        const bouquetFleurs = 15;
+        return (
+          <div>
+          <ul>
+            <li>Monstera : {monsteraPrice} €</li>
+            <li>Lierre : {lierrePrice} €</li>
+            <li>Bouquet de fleurs : {bouquetFleurs} €</li>
+          </ul>
+          <p>Total panier : {monsteraPrice + lierrePrice + bouquetFleurs} €</p>
+          </div>
+        );
+      };
+
+      //render pour rendre la vue dans le DOM avec ReactDOM
+      //wrap les composants dans un seul parent obligatoire
+      //React.Fragment = parent virtuel, n'existe pas dans le DOM, remplacable par balise html
+      ReactDOM.render(<React.Fragment><Banner /><Cart /></React.Fragment>, document.getElementById("root"));
     </script>
   </body>
 </html>
